@@ -4,109 +4,128 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Maxwell Capital</title>
-<meta name="description" content="Maxwell Capital invests early in technical founders building for the security of the West.">
+<meta name="description" content="We invest in founders and their teams by deploying capital, earned experience, and connections to like-minded operators. We go early.">
 <link rel="canonical" href="https://www.maxwellcapital.xyz/">
 <meta property="og:title" content="Maxwell Capital">
+<meta property="og:site_name" content="Maxwell Capital">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://www.maxwellcapital.xyz/">
 <meta property="og:image" content="https://www.maxwellcapital.xyz/logo.png">
+<meta name="twitter:card" content="summary">
+<meta name="theme-color" content="#000000">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
+<!--
+  Old site used Adobe "Acumin Pro" (Squarespace-licensed, not free to self-host).
+  Archivo is the closest free match. Nav uses Poppins 300, same as the old site.
+-->
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400..600&family=Poppins:wght@300&display=swap" rel="stylesheet">
 <style>
   :root {
-    --paper: #ffffff;
-    --ink: #1b1f1d;
-    --muted: #5b6360;
-    --rule: #dfe3e1;
-    --accent: #1F4A3D; /* eucalypt */
+    --text: #ffffff;
+    --bg: #000000;
+    --overlay: rgba(0, 0, 0, 0.15);
+    --gutter: max(16px, 3vw);
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  html { -webkit-text-size-adjust: 100%; }
+  html, body { height: 100%; }
   body {
-    background: var(--paper);
-    color: var(--ink);
-    font-family: "Source Serif 4", Georgia, serif;
-    font-size: 1.125rem;
-    line-height: 1.6;
+    background: var(--bg);
+    color: var(--text);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Full-screen hero: photo + light dark overlay, as on the Squarespace site */
+  .hero {
+    position: relative;
     min-height: 100vh;
+    min-height: 100svh;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
+    padding: var(--gutter);
+    /* Fallback tones if hero.webp is missing */
+    background: #0c1b21 radial-gradient(ellipse at 65% 70%, #1d3a40 0%, #0c1b21 60%, #050c0f 100%);
+    overflow: hidden;
   }
-  .wrap { width: 100%; max-width: 44rem; margin: 0 auto; padding: 0 16px; }
-  header { padding: 40px 0 0; }
-  header .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
-  .brand { text-decoration: none; }
-  .brand img { display: block; height: 44px; width: auto; }
-  .wordmark {
-    font-family: "Jost", sans-serif; font-weight: 500;
-    letter-spacing: 0.22em; text-transform: uppercase;
-    font-size: 0.95rem; color: var(--accent); text-decoration: none;
+  .hero__bg {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover; object-position: center;
+    z-index: 0;
   }
-  .label {
-    font-family: "Jost", sans-serif; font-weight: 500;
-    letter-spacing: 0.18em; text-transform: uppercase;
-    font-size: 0.75rem; color: var(--accent);
+  .hero::after {
+    content: ""; position: absolute; inset: 0;
+    background: var(--overlay);
+    z-index: 1;
   }
-  main { flex: 1; padding: 72px 0 56px; }
-  main .rule { width: 48px; height: 2px; background: var(--accent); margin: 16px 0 28px; }
-  main p { margin-bottom: 1.25em; }
-  main p.lead { font-size: 1.5rem; line-height: 1.4; font-weight: 600; }
-  .contact { margin-top: 40px; padding-top: 24px; border-top: 1px solid var(--rule); }
-  .contact a {
-    color: var(--accent); text-decoration: none;
-    border-bottom: 1px solid currentColor; padding-bottom: 1px;
+  .hero > header, .hero > main { position: relative; z-index: 2; }
+
+  header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
   }
-  .contact a:hover, .contact a:focus { border-bottom-width: 2px; }
-  footer { padding: 24px 0 32px; color: var(--muted); font-size: 0.85rem; }
-  @media (max-width: 480px) {
-    header { padding-top: 24px; }
-    .brand img { height: 34px; }
-    main { padding-top: 48px; }
-    main p.lead { font-size: 1.3rem; }
+  .logo { text-decoration: none; }
+  .logo img {
+    display: block;
+    width: clamp(160px, 22.6vw, 420px);
+    height: auto;
+  }
+  .logo .wordmark {
+    font-family: "Poppins", sans-serif; font-weight: 300;
+    letter-spacing: 0.35em; text-transform: uppercase;
+    font-size: clamp(1rem, 1.8vw, 1.75rem); line-height: 1.3;
+    color: var(--text);
+  }
+  nav a {
+    font-family: "Poppins", sans-serif;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 1.8;
+    color: var(--text);
+    text-decoration: none;
+    display: inline-block;
+    margin-top: clamp(4px, 1.6vw, 28px);
+  }
+  nav a:hover, nav a:focus-visible { text-decoration: underline; text-underline-offset: 4px; }
+
+  main { max-width: 78vw; padding-bottom: 1vw; }
+  main p {
+    font-family: "Archivo", "Helvetica Neue", Arial, sans-serif;
+    font-weight: 440;
+    font-size: clamp(1.2rem, 2.37vw, 2.75rem);
+    line-height: 1.333;
+    margin-top: 0.55em;
+    text-shadow: 0 1px 12px rgba(0, 0, 0, 0.25);
+  }
+
+  @media (max-width: 700px) {
+    main { max-width: 100%; }
+    .logo img { width: 180px; }
+    nav a { margin-top: 6px; }
   }
 </style>
 </head>
 <body>
-<header>
-  <div class="wrap">
-    <a class="brand" href="/" aria-label="Maxwell Capital home">
-      <!-- Falls back to a typeset wordmark if logo.png is missing -->
-      <img src="logo.png" alt="Maxwell Capital"
-           onerror="this.outerHTML='<span class=&quot;wordmark&quot;>Maxwell Capital</span>'">
-    </a>
-    <a class="label" href="#contact" style="text-decoration:none">Contact</a>
+  <div class="hero">
+    <img class="hero__bg" src="hero.webp" alt="" aria-hidden="true"
+         onerror="this.remove()">
+    <header>
+      <a class="logo" href="/" aria-label="Maxwell Capital home">
+        <!-- White logo (Maxwell_Capital_Logo_Light.png) for the dark photo -->
+        <img src="logo.png" alt="Maxwell Capital"
+             onerror="this.outerHTML='<span class=&quot;wordmark&quot;>Maxwell<br>Capital</span>'">
+      </a>
+      <nav><a href="mailto:contact@maxwellcapital.xyz">Contact</a></nav>
+    </header>
+
+    <main>
+      <p>We invest in founders and their teams by deploying capital, earned experience, and connections to like-minded operators. We go early.</p>
+      <p>We enjoy working with technical founders with a mission to improve the world - and in particular, those committed to the security of the West.</p>
+      <p>Please get in touch if you are working on enterprise SaaS, data infrastructure, hardware, and technology supporting the strategic community in the Five Eyes. We&rsquo;re based in Australia with good friends in the U.S. and U.K.</p>
+    </main>
   </div>
-</header>
-
-<main>
-  <div class="wrap">
-    <span class="label">Early-stage investment</span>
-    <div class="rule" aria-hidden="true"></div>
-    <p class="lead">We invest in founders and their teams by deploying capital, earned experience, and connections to like-minded operators. We go early.</p>
-    <p>We enjoy working with technical founders with a mission to improve the world, and in particular those committed to the security of the West.</p>
-    <p>Please get in touch if you are working on enterprise SaaS, data infrastructure, hardware, or technology supporting the strategic community in the Five Eyes. We&rsquo;re based in Australia with good friends in the U.S. and U.K.</p>
-
-    <div class="contact" id="contact">
-      <span class="label">Contact</span>
-      <p style="margin-top:8px"><a id="email" href="#">Email us</a></p>
-    </div>
-  </div>
-</main>
-
-<footer>
-  <div class="wrap">&copy; <span id="yr">2026</span> Maxwell Capital</div>
-</footer>
-
-<script>
-  // Assemble the address at runtime so basic scrapers don't harvest it.
-  (function () {
-    var u = "matthew", d = "maxwellcapital.xyz";
-    var a = document.getElementById("email");
-    a.href = "mailto:" + u + "@" + d;
-    a.textContent = u + "@" + d;
-    document.getElementById("yr").textContent = new Date().getFullYear();
-  })();
-</script>
 </body>
 </html>
